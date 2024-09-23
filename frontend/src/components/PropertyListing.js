@@ -1,3 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import { getProperties } from '../api'; // Define this API function
+
+const PropertyList = () => {
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            const response = await getProperties();
+            setProperties(response.data);
+        };
+        fetchProperties();
+    }, []);
+
+    return (
+        <div>
+            <h1>Properties</h1>
+            <ul>
+                {properties.map(property => (
+                    <li key={property.id}>
+                        <h2>{property.title}</h2>
+                        <p>{property.description}</p>
+                        <p>Price: ${property.price}</p>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default PropertyList;
 // src/components/PropertyList.js
 import React, { useEffect, useState } from 'react';
 import { getProperties, createProperty, deleteProperty } from '../services/propertyService';
