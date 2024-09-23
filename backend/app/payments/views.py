@@ -1,4 +1,35 @@
 # backend/apps/payments/views.py
+from django.http import HttpResponse, Http404
+from django.template.loader import get_template
+from weasyprint import HTML
+from .models import Payment
+from django.core.exceptions import ObjectDoesNotExist
+
+def generate_receipt(request, payment_id):
+    try:
+        # Attempt to fetch the payment using the payment_id
+        payment = Payment.objects.get(id=payment_id)
+    except ObjectDoesNotExist:
+        # If payment does not exist, return a 404 error
+        raise Http404("Payment not found")
+
+    try:
+        # Load the receipt template and generate the receipt
+        template = get_template('payments/receipt_template.html')
+        html_content = template.render({'payment': payment})
+
+        # Create a PDF using WeasyPrint
+        pdf_file = HTML(string=html_content).write_pdf()
+
+        # Return the generated PDF as an HTTP response
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="receipt_{payment.id}.pdf"'
+        return response
+    except Exception as e:
+        # Log the error and return a 500 Internal Server Error response
+        print(f"Error generating receipt: {e}")
+        return HttpResponse("Error generating receipt", status=500)
+# backend/apps/payments/views.py
 from django.http import HttpResponse
 from django.template.loader import get_template
 from weasyprint import HTML
