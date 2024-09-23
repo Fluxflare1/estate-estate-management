@@ -1,3 +1,60 @@
+// src/components/PropertyList.js
+import React, { useEffect, useState } from 'react';
+import { getProperties, createProperty, deleteProperty } from '../services/propertyService';
+
+const PropertyList = () => {
+    const [properties, setProperties] = useState([]);
+    const [newProperty, setNewProperty] = useState({ name: '', location: '' });
+
+    useEffect(() => {
+        loadProperties();
+    }, []);
+
+    const loadProperties = async () => {
+        const response = await getProperties();
+        setProperties(response.data);
+    };
+
+    const handleAddProperty = async () => {
+        await createProperty(newProperty);
+        loadProperties();
+        setNewProperty({ name: '', location: '' }); // Reset form
+    };
+
+    const handleDeleteProperty = async (id) => {
+        await deleteProperty(id);
+        loadProperties();
+    };
+
+    return (
+        <div>
+            <h2>Property List</h2>
+            <input
+                type="text"
+                placeholder="Property Name"
+                value={newProperty.name}
+                onChange={(e) => setNewProperty({ ...newProperty, name: e.target.value })}
+            />
+            <input
+                type="text"
+                placeholder="Location"
+                value={newProperty.location}
+                onChange={(e) => setNewProperty({ ...newProperty, location: e.target.value })}
+            />
+            <button onClick={handleAddProperty}>Add Property</button>
+            <ul>
+                {properties.map(property => (
+                    <li key={property.id}>
+                        {property.name} ({property.location})
+                        <button onClick={() => handleDeleteProperty(property.id)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default PropertyList;
 // frontend/src/components/PaymentList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
