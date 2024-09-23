@@ -1,0 +1,41 @@
+<!-- backend/apps/payments/templates/payments/receipt_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { text-align: center; }
+        .content { margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Payment Receipt</h1>
+        <p>Receipt for Payment ID: {{ payment.id }}</p>
+    </div>
+    <div class="content">
+        <table>
+            <tr>
+                <th>Payment ID</th>
+                <td>{{ payment.id }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>${{ payment.amount }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ payment.date }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ payment.user }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
