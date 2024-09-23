@@ -1,3 +1,4 @@
+import PaymentEdit from './payments/PaymentEdit';
 // src/components/PaymentList.js
 import React, { useEffect, useState } from 'react';
 import { getPayments, createPayment, deletePayment } from '../services/paymentService';
