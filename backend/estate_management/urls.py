@@ -1,3 +1,8 @@
+# backend/estate_management/urls.py
+
+from apps.payments.views import CashTransactionViewSet
+
+router.register(r'cash-transactions', CashTransactionViewSet)
 router.register(r'messages', MessageViewSet)
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
