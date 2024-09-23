@@ -1,3 +1,19 @@
+# estate_management/urls.py
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from apps.users.views import UserViewSet
+from apps.properties.views import PropertyViewSet
+from apps.payments.views import PaymentViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'properties', PropertyViewSet)
+router.register(r'payments', PaymentViewSet)
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
 # backend/estate_management/urls.py
 
 from apps.payments.views import CashTransactionViewSet
