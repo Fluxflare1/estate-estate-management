@@ -1,3 +1,21 @@
+// frontend/src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import UserProfile from './components/UserProfile';
+// Other imports...
+
+const App = () => {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/profile" component={UserProfile} />
+                {/* Other routes... */}
+            </Switch>
+        </Router>
+    );
+};
+
+export default App;
 import React, { useState } from 'react';
 import PropertyList from './components/PropertyList';
 import PropertyForm from './components/PropertyForm';
