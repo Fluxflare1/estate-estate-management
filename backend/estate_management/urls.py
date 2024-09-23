@@ -1,3 +1,9 @@
+from django.urls import path, include
+
+urlpatterns = [
+    path('api/', include('properties.urls')),
+    # other paths...
+]
 # estate_management/urls.py
 
 from django.urls import path, include
