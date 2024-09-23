@@ -1,4 +1,10 @@
 # backend/estate_management/urls.py
+from django.urls import include
+
+urlpatterns = [
+    path('api/properties/', include('apps.properties.urls')),  # Add properties URLs
+]
+# backend/estate_management/urls.py
 from django.contrib import admin
 from django.urls import path, include
 
