@@ -1,3 +1,11 @@
+# backend/estate_management/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/users/', include('apps.users.urls')),  # Adding the users URLs
+]
 from django.urls import path, include
 from apps.users.views import RegisterUser
 from apps.properties.views import PropertyListCreateView
