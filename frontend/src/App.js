@@ -1,3 +1,19 @@
+import React, { useState } from 'react';
+import PropertyList from './components/PropertyList';
+import PropertyForm from './components/PropertyForm';
+
+const App = () => {
+    const [refresh, setRefresh] = useState(false);
+
+    return (
+        <div>
+            <PropertyForm onSuccess={() => setRefresh(!refresh)} />
+            <PropertyList key={refresh} />
+        </div>
+    );
+};
+
+export default App;
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PaymentList from './components/PaymentList';
 import PaymentAdd from './components/PaymentAdd';
