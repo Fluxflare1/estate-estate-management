@@ -1,3 +1,35 @@
+// frontend/src/components/PaymentList.js
+import React, { useState, useEffect } from 'react';
+import { getPayments } from '../api/payments'; // Assuming the API call is implemented
+
+const PaymentList = () => {
+    const [payments, setPayments] = useState([]);
+
+    useEffect(() => {
+        const fetchPayments = async () => {
+            const response = await getPayments();
+            setPayments(response.data);
+        };
+        fetchPayments();
+    }, []);
+
+    if (payments.length === 0) return <p>No payments available.</p>;
+
+    return (
+        <div>
+            <h2>Payment History</h2>
+            <ul>
+                {payments.map((payment) => (
+                    <li key={payment.id}>
+                        {payment.amount} - {payment.date}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default PaymentList;
 import PaymentEdit from './payments/PaymentEdit';
 // src/components/PaymentList.js
 import React, { useEffect, useState } from 'react';
