@@ -1,3 +1,13 @@
+from django.test import TestCase
+from .models import User
+
+class UserModelTest(TestCase):
+    def setUp(self):
+        User.objects.create(username='testuser', email='testuser@example.com')
+
+    def test_user_creation(self):
+        user = User.objects.get(username='testuser')
+        self.assertEqual(user.email, 'testuser@example.com')
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
