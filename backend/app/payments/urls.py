@@ -1,3 +1,11 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('payments/', views.get_payments, name='get_payments'),
+    path('payments/add/', views.add_payment, name='add_payment'),
+    path('payments/update/<int:pk>/', views.update_payment, name='update_payment'),
+]
 # backend/apps/payments/utils.py
 from .models import Receipt
 
