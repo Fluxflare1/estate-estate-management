@@ -1,4 +1,64 @@
 // frontend/src/components/PaymentList.js
+import React, { useState } from 'react';
+
+const PaymentList = ({ payments }) => {
+    const [error, setError] = useState(null);
+
+    const handleDownloadReceipt = (paymentId) => {
+        setError(null); // Reset error message before download
+
+        fetch(`/api/payments/${paymentId}/receipt/`)
+            .then((response) => {
+                if (response.ok) {
+                    // If the response is ok, open the PDF in a new tab
+                    window.open(`/api/payments/${paymentId}/receipt/`, '_blank');
+                } else {
+                    // Handle non-OK responses (e.g., 404 or 500)
+                    setError('Failed to download the receipt. Please try again later.');
+                }
+            })
+            .catch((err) => {
+                // Catch any network errors
+                setError('An error occurred while downloading the receipt.');
+            });
+    };
+
+    return (
+        <div>
+            <h2>Payments</h2>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {payments.map(payment => (
+                        <tr key={payment.id}>
+                            <td>{payment.id}</td>
+                            <td>{payment.amount}</td>
+                            <td>{payment.date}</td>
+                            <td>{payment.userId}</td>
+                            <td>
+                                <button onClick={() => handleDownloadReceipt(payment.id)}>
+                                    Download Receipt
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default PaymentList;
+// frontend/src/components/PaymentList.js
 import React from 'react';
 
 const PaymentList = ({ payments }) => {
