@@ -1,3 +1,6 @@
+class Payment(models.Model):
+    ...
+    advance_payment = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 # backend/apps/payments/models.py
 
 from django.db import models
