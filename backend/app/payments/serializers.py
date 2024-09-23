@@ -1,4 +1,13 @@
 # backend/apps/payments/serializers.py
+
+from rest_framework import serializers
+from .models import CashTransaction
+
+class CashTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CashTransaction
+        fields = '__all__'
+# backend/apps/payments/serializers.py
 from rest_framework import serializers
 from .models import Payment
 
