@@ -1,4 +1,16 @@
 # backend/apps/payments/views.py
+
+from rest_framework import viewsets
+from .models import CashTransaction
+from .serializers import CashTransactionSerializer
+
+class CashTransactionViewSet(viewsets.ModelViewSet):
+    queryset = CashTransaction.objects.all()
+    serializer_class = CashTransactionSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+# backend/apps/payments/views.py
 from rest_framework import generics
 from .models import Payment
 from .serializers import PaymentSerializer
