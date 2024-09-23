@@ -1,3 +1,14 @@
+import { Link } from 'react-router-dom';
+
+function Navbar() {
+    return (
+        <nav>
+            <Link to="/users">Users</Link>
+            <Link to="/properties">Properties</Link>
+            <Link to="/payments">Payments</Link>
+        </nav>
+    );
+}
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserComponent from './components/UserComponent';
