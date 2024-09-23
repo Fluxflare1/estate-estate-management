@@ -1,4 +1,28 @@
 import React, { useEffect, useState } from 'react';
+
+const PropertyComponent = () => {
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/properties/')
+            .then(response => response.json())
+            .then(data => setProperties(data));
+    }, []);
+
+    return (
+        <div>
+            <h2>Properties List</h2>
+            <ul>
+                {properties.map(property => (
+                    <li key={property.id}>{property.name}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default PropertyComponent;
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const PropertyComponent = () => {
