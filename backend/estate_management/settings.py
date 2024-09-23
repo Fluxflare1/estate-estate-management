@@ -1,3 +1,11 @@
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'send-reminders-every-day': {
+        'task': 'payments.tasks.send_payment_reminders',
+        'schedule': crontab(hour=9, minute=0),  # Set to run every day at 9 AM
+    },
+}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
