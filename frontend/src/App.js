@@ -1,3 +1,21 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PaymentList from './components/PaymentList';
+import PaymentAdd from './components/PaymentAdd';
+import PaymentEdit from './components/PaymentEdit'; // Assuming it's already created
+
+function App() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/payments" exact component={PaymentList} />
+                <Route path="/payments/add" exact component={PaymentAdd} />
+                <Route path="/payments/edit/:id" exact component={PaymentEdit} />
+            </Switch>
+        </Router>
+    );
+}
+
+export default App;
 import React from 'react';
 import UserList from './components/UserList'; // Adjust the path as necessary
 
