@@ -1,5 +1,24 @@
 // frontend/src/App.js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PropertyList from './components/PropertyList';
+import AddProperty from './components/AddProperty';
+import EditProperty from './components/EditProperty';
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/properties" component={PropertyList} />
+        <Route path="/add-property" component={AddProperty} />
+        <Route path="/edit-property/:id" component={EditProperty} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
+// frontend/src/App.js
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import RegisterUser from './components/RegisterUser';
 import LoginUser from './components/LoginUser';
 
