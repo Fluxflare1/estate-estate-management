@@ -1,3 +1,13 @@
+from django.urls import path, include
+from apps.users.views import RegisterUser
+from apps.properties.views import PropertyListCreateView
+from apps.payments.views import PaymentCreateView
+
+urlpatterns = [
+    path('users/register/', RegisterUser.as_view()),
+    path('properties/', PropertyListCreateView.as_view()),
+    path('payments/', PaymentCreateView.as_view()),
+]
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns += [
