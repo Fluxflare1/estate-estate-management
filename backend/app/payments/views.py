@@ -1,3 +1,12 @@
+# apps/payments/views.py
+
+from rest_framework import viewsets
+from .models import Payment
+from .serializers import PaymentSerializer
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
 def process_advance_payment(request):
     # Logic for processing advance payments
     pass
