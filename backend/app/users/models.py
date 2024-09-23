@@ -1,4 +1,10 @@
 from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    is_property_owner = models.BooleanField(default=False)
+    is_tenant = models.BooleanField(default=False)
+    is_agent = models.BooleanField(default=False)
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class User(AbstractUser):
