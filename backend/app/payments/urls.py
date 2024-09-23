@@ -1,3 +1,11 @@
+# backend/apps/payments/urls.py
+from django.urls import path
+from .views import generate_receipt
+
+urlpatterns = [
+    # Other payment URLs
+    path('payments/<int:payment_id>/receipt/', generate_receipt, name='generate_receipt'),
+]
 from django.urls import path
 from . import views
 
