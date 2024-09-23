@@ -1,6 +1,24 @@
 // frontend/src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PropertyManagement from './components/PropertyManagement';
+// Other imports...
+
+const App = () => {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/properties" component={PropertyManagement} />
+                {/* Other routes... */}
+            </Switch>
+        </Router>
+    );
+};
+
+export default App;
+// frontend/src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserProfile from './components/UserProfile';
 // Other imports...
 
