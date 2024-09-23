@@ -1,3 +1,10 @@
+import React from 'react';
+
+const Notification = ({ message }) => {
+    return <div>{message}</div>;
+};
+
+export default Notification;
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
