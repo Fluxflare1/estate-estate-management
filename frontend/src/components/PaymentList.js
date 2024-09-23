@@ -1,4 +1,47 @@
 // frontend/src/components/PaymentList.js
+import React from 'react';
+
+const PaymentList = ({ payments }) => {
+    const handleDownloadReceipt = (paymentId) => {
+        // Trigger download by opening the PDF URL
+        window.open(`/api/payments/${paymentId}/receipt/`, '_blank');
+    };
+
+    return (
+        <div>
+            <h2>Payments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {payments.map(payment => (
+                        <tr key={payment.id}>
+                            <td>{payment.id}</td>
+                            <td>{payment.amount}</td>
+                            <td>{payment.date}</td>
+                            <td>{payment.userId}</td>
+                            <td>
+                                <button onClick={() => handleDownloadReceipt(payment.id)}>
+                                    Download Receipt
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default PaymentList;
+// frontend/src/components/PaymentList.js
 import React, { useState, useEffect } from 'react';
 import { getPayments } from '../api/payments'; // Assuming the API call is implemented
 
