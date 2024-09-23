@@ -1,3 +1,17 @@
+import React from 'react';
+import UserList from './components/UserList'; // Adjust the path as necessary
+
+function App() {
+    return (
+        <div className="App">
+            <h1>Estate Management System</h1>
+            <UserList />
+            {/* Add other components here */}
+        </div>
+    );
+}
+
+export default App;
 // frontend/src/App.js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropertyList from './components/PropertyList';
