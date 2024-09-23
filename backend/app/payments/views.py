@@ -1,3 +1,24 @@
+# backend/apps/payments/views.py
+from django.http import HttpResponse
+from django.template.loader import get_template
+from weasyprint import HTML
+from .models import Payment
+
+def generate_receipt(request, payment_id):
+    # Fetch the payment details using the payment_id
+    payment = Payment.objects.get(id=payment_id)
+
+    # Load the receipt template
+    template = get_template('payments/receipt_template.html')
+    html_content = template.render({'payment': payment})
+
+    # Create a PDF using WeasyPrint
+    pdf_file = HTML(string=html_content).write_pdf()
+
+    # Send the generated PDF back as an HTTP response
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="receipt_{payment.id}.pdf"'
+    return response
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Payment
