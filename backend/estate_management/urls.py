@@ -2,6 +2,13 @@
 from django.urls import include
 
 urlpatterns = [
+    path('api/properties/', include('apps.properties.urls')),
+    path('api/payments/', include('apps.payments.urls')),  # Add payments URLs
+]
+# backend/estate_management/urls.py
+from django.urls import include
+
+urlpatterns = [
     path('api/properties/', include('apps.properties.urls')),  # Add properties URLs
 ]
 # backend/estate_management/urls.py
