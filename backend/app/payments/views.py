@@ -1,3 +1,30 @@
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import Payment
+from .serializers import PaymentSerializer
+
+@api_view(['GET'])
+def get_payments(request):
+    payments = Payment.objects.all()
+    serializer = PaymentSerializer(payments, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def add_payment(request):
+    serializer = PaymentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['PUT'])
+def update_payment(request, pk):
+    payment = Payment.objects.get(id=pk)
+    serializer = PaymentSerializer(payment, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
 # apps/payments/views.py
 
 from rest_framework import viewsets
