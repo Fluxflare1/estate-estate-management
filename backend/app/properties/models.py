@@ -2,6 +2,18 @@ from django.db import models
 from apps.users.models import User
 
 class Property(models.Model):
+    owner = models.ForeignKey(User, related_name="properties", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=500)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=50, choices=[('rent', 'Rent'), ('sale', 'Sale')])
+
+    def __str__(self):
+        return self.name
+from django.db import models
+from apps.users.models import User
+
+class Property(models.Model):
     name = models.CharField(max_length=255)
     address = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
