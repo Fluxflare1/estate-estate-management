@@ -1,3 +1,20 @@
+// frontend/src/App.js
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import RegisterUser from './components/RegisterUser';
+import LoginUser from './components/LoginUser';
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/register" component={RegisterUser} />
+        <Route path="/login" component={LoginUser} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;
 useEffect(() => {
     fetch('/api/users/')
         .then(response => {
