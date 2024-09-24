@@ -1,3 +1,20 @@
+import React from 'react';
+import TenantApplication from './components/TenantApplication';
+import TenantManagement from './components/TenantManagement';
+
+function App() {
+    const propertyId = 1; // Example property ID for the tenant application
+
+    return (
+        <div className="App">
+            <h1>Property Management System</h1>
+            <TenantApplication propertyId={propertyId} />
+            <TenantManagement />
+        </div>
+    );
+}
+
+export default App;
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserProfile from './components/UserProfile';
 
