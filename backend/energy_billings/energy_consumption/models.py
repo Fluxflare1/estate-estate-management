@@ -1,3 +1,19 @@
+class TenantPayment(models.Model):
+    # Existing fields...
+    
+    def update_balance(self, tenant_id, current_cost):
+        """
+        Update the balance for a tenant based on their current cost and payments.
+        
+        Args:
+            tenant_id (int): The tenant's ID.
+            current_cost (float): Current amount owed by the tenant.
+        """
+        tenant_payments = TenantPayment.objects.filter(tenant_id=tenant_id)
+        total_paid = sum(payment.amount for payment in tenant_payments)
+        outstanding_balance = current_cost - total_paid
+        
+        return outstanding_balance
 class EnergyBillingAccount(models.Model):
     # Existing fields...
 
