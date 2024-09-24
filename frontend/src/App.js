@@ -1,3 +1,17 @@
+import React from 'react';
+import TenantsList from './components/TenantsList';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Energy Billing System</h1>
+      <TenantsList />
+      {/* Add other components here */}
+    </div>
+  );
+};
+
+export default App;
 import './styles/main.css';
 <link rel="stylesheet" href="styles/branding.css">
 import React from 'react';
