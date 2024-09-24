@@ -1,3 +1,26 @@
+# backend/energy-billings/energy_consumption/models.py
+
+class EnergyBillingAccount(models.Model):
+    # Existing fields...
+    
+    def calculate_consumption(self, tenant_meter_readings):
+        """
+        Calculate total consumption for the billing period.
+        
+        Args:
+            tenant_meter_readings (dict): A dictionary containing tenant ids as keys 
+                                           and their respective meter readings as values.
+        
+        Returns:
+            dict: A dictionary with tenant ids and their corresponding consumption.
+        """
+        consumption = {}
+        for tenant_id, readings in tenant_meter_readings.items():
+            # Assuming readings is a tuple (previous_reading, current_reading)
+            previous_reading, current_reading = readings
+            consumption[tenant_id] = current_reading - previous_reading
+            
+        return consumption
 from django.db import models
 
 class EnergyBillingAccount(models.Model):
