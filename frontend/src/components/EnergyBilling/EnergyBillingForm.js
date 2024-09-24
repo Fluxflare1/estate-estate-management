@@ -1,4 +1,6 @@
 // frontend/src/components/EnergyBilling/EnergyBillingForm.js
+import './EnergyBillingForm.scss';
+// frontend/src/components/EnergyBilling/EnergyBillingForm.js
 import React, { useState } from 'react';
 
 const EnergyBillingForm = ({ onSubmit }) => {
