@@ -1,3 +1,17 @@
+import React from 'react';
+import EnergyBillingDashboard from './components/EnergyBillingDashboard';
+import EnergyBillingForm from './components/EnergyBillingForm';
+
+const App = () => {
+    return (
+        <div>
+            <EnergyBillingDashboard />
+            <EnergyBillingForm />
+        </div>
+    );
+};
+
+export default App;
 // Example of integrating in your main App component
 import React from 'react';
 import EnergyBillingDashboard from './components/EnergyBilling/EnergyBillingDashboard';
