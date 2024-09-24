@@ -1,3 +1,21 @@
+class EnergyBillingAccount(models.Model):
+    # Existing fields...
+
+    def calculate_final_amount(self, tenant_id, current_cost):
+        """
+        Calculate the final amount for a tenant, including any outstanding balance.
+        
+        Args:
+            tenant_id (int): The tenant's ID.
+            current_cost (float): Current amount owed by the tenant.
+        
+        Returns:
+            float: The final amount due for the tenant.
+        """
+        outstanding_balance = self.update_balance(tenant_id, current_cost)
+        final_amount = current_cost + outstanding_balance
+        
+        return final_amount
 class TenantPayment(models.Model):
     # Existing fields...
     
