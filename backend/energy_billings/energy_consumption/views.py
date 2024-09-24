@@ -1,3 +1,13 @@
+from rest_framework import viewsets
+from .models import Payment
+from .serializers import PaymentSerializer
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    
+    def perform_create(self, serializer):
+        serializer.save()
 # backend/energy-billings/energy_consumption/views.py
 from django.core.mail import send_mail
 
