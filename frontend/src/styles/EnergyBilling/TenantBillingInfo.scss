@@ -1,1 +1,20 @@
+// frontend/src/styles/EnergyBilling/TenantBillingInfo.scss
 
+.tenant-billing-info {
+    margin-top: 20px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    }
+}
