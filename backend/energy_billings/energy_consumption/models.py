@@ -1,3 +1,20 @@
+from django.db import models
+
+class EnergyBillingAccount(models.Model):
+    # Existing fields...
+    landlord = models.ForeignKey('User', on_delete=models.CASCADE)
+    total_energy_purchased = models.DecimalField(max_digits=10, decimal_places=2)
+    # Other fields...
+
+class Payment(models.Model):
+    billing_account = models.ForeignKey(EnergyBillingAccount, related_name='payments', on_delete=models.CASCADE)
+    tenant = models.ForeignKey('User', on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_date = models.DateTimeField(auto_now_add=True)
+    payment_type = models.CharField(max_length=20, choices=[('partial', 'Partial'), ('full', 'Full'), ('advance', 'Advance'), ('none', 'No Payment')])
+    
+    def __str__(self):
+        return f"{self.tenant.username} - {self.amount} on {self.payment_date}"
 # backend/energy-billings/energy_consumption/models.py
 from django.contrib.auth.models import User
 from django.db import models
