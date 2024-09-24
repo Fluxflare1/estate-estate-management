@@ -1,3 +1,16 @@
+from django.db import models
+from apps.users.models import User  # Assuming users is another app
+
+class Property(models.Model):
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owned_properties')
+    tenant = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='rented_properties')
+    rent = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 # backend/apps/properties/models.py
 from django.db import models
 from django.conf import settings
