@@ -1,5 +1,21 @@
 import React from 'react';
 import TenantsList from './components/TenantsList';
+import EnergyPurchasesList from './components/EnergyPurchasesList';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Energy Billing System</h1>
+      <TenantsList />
+      <EnergyPurchasesList />
+      {/* Add other components here */}
+    </div>
+  );
+};
+
+export default App;
+import React from 'react';
+import TenantsList from './components/TenantsList';
 
 const App = () => {
   return (
