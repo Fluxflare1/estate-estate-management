@@ -1,3 +1,12 @@
+from django.http import JsonResponse
+from .models import Notification
+
+def get_notifications(request):
+    user = request.user
+    notifications = Notification.objects.filter(user=user, read=False)
+    data = [{"message": n.message, "created_at": n.created_at} for n in notifications]
+    
+    return JsonResponse({"notifications": data})
 from .tasks import notify_user
 
 # Example of triggering a notification
