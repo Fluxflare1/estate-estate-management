@@ -1,3 +1,38 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const EnergyBillingDashboard = () => {
+    const [billingData, setBillingData] = useState([]);
+
+    useEffect(() => {
+        fetchBillingData();
+    }, []);
+
+    const fetchBillingData = async () => {
+        try {
+            const response = await axios.get('/api/energy-billing'); // Adjust the endpoint accordingly
+            setBillingData(response.data);
+        } catch (error) {
+            console.error("Error fetching billing data", error);
+        }
+    };
+
+    return (
+        <div>
+            <h1>Energy Billing Dashboard</h1>
+            {/* Render billing data */}
+            {billingData.map((billing, index) => (
+                <div key={index}>
+                    <h2>Billing Account: {billing.accountName}</h2>
+                    <p>Consumption: {billing.consumption} kWh</p>
+                    <p>Total Amount: ₦{billing.totalAmount}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default EnergyBillingDashboard;
 // frontend/src/components/EnergyBilling/EnergyBillingDashboard.js
 import React, { useState } from 'react';
 import EnergyBillingForm from './EnergyBillingForm';
