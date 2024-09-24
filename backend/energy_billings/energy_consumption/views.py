@@ -1,4 +1,23 @@
 # backend/energy-billings/energy_consumption/views.py
+from django.core.mail import send_mail
+
+def send_notification_email(subject, message, recipient_list):
+    send_mail(
+        subject,
+        message,
+        'from@example.com',
+        recipient_list,
+        fail_silently=False,
+    )
+
+class MeterReadingViewSet(viewsets.ModelViewSet):
+    # Existing code...
+    
+    def perform_create(self, serializer):
+        super().perform_create(serializer)
+        # Send email notification
+        send_notification_email('New Meter Reading', 'A new meter reading has been entered.', ['tenant@example.com'])
+# backend/energy-billings/energy_consumption/views.py
 from rest_framework import viewsets, permissions
 from .models import EnergyBillingAccount
 from .serializers import EnergyBillingAccountSerializer
