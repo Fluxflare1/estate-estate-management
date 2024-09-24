@@ -1,3 +1,20 @@
+import axios from 'axios';
+
+export const getProperties = async () => {
+    return await axios.get('/api/properties/');
+};
+
+export const getProperty = async (id) => {
+    return await axios.get(`/api/properties/${id}`);
+};
+
+export const createProperty = async (propertyData) => {
+    return await axios.post('/api/properties/', propertyData);
+};
+
+export const updateProperty = async (id, propertyData) => {
+    return await axios.put(`/api/properties/${id}`, propertyData);
+};
 // frontend/src/api/propertyApi.js
 import axios from 'axios';
 
