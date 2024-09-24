@@ -1,3 +1,45 @@
+.payment-records {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #dee2e6;
+      text-align: left;
+      color: #495057;
+    }
+
+    th {
+      background-color: #e9ecef;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    table {
+      font-size: 0.9rem;
+    }
+  }
+}
 .meter-reading-form {
   background-color: #f8f9fa;
   padding: 20px;
