@@ -1,3 +1,17 @@
+// Example of integrating in your main App component
+import React from 'react';
+import EnergyBillingDashboard from './components/EnergyBilling/EnergyBillingDashboard';
+
+const App = () => {
+    return (
+        <div>
+            <h1>Estate Management System</h1>
+            <EnergyBillingDashboard />
+        </div>
+    );
+};
+
+export default App;
 import React from 'react';
 import TenantApplication from './components/TenantApplication';
 import TenantManagement from './components/TenantManagement';
