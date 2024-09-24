@@ -1,3 +1,26 @@
+class EnergyBillingAccount(models.Model):
+    # Existing fields...
+
+    def distribute_cost(self, total_energy_purchased, tenant_consumptions):
+        """
+        Distribute cost based on consumption.
+        
+        Args:
+            total_energy_purchased (float): Total amount of energy purchased.
+            tenant_consumptions (dict): Dictionary of tenant ids and their corresponding consumption.
+        
+        Returns:
+            dict: A dictionary with tenant ids and their respective costs.
+        """
+        total_units_consumed = sum(tenant_consumptions.values())
+        cost_distribution = {}
+        
+        if total_units_consumed > 0:
+            cost_per_unit = total_energy_purchased / total_units_consumed
+            for tenant_id, consumption in tenant_consumptions.items():
+                cost_distribution[tenant_id] = consumption * cost_per_unit
+                
+        return cost_distribution
 # backend/energy-billings/energy_consumption/models.py
 
 class EnergyBillingAccount(models.Model):
