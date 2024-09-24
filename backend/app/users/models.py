@@ -1,3 +1,12 @@
+class Tenant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='tenants')
+    move_in_date = models.DateField()
+    move_out_date = models.DateField(null=True, blank=True)
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Tenant: {self.user.username} for Property: {self.property.address}'
 class Property(models.Model):
     business_profile = models.ForeignKey(BusinessProfile, on_delete=models.CASCADE, related_name='properties')
     address = models.CharField(max_length=255)
