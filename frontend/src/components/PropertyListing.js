@@ -1,3 +1,31 @@
+import React, { useState } from 'react';
+import PropertyForm from './PropertyForm';
+import PropertyList from './PropertyList';
+
+const PropertyPage = () => {
+    const [editingPropertyId, setEditingPropertyId] = useState(null);
+
+    const openForm = (propertyId) => {
+        setEditingPropertyId(propertyId);
+    };
+
+    const closeForm = () => {
+        setEditingPropertyId(null);
+    };
+
+    return (
+        <div>
+            <h1>Properties</h1>
+            <button onClick={() => openForm(null)}>Add Property</button>
+            <PropertyList onEdit={openForm} />
+            {editingPropertyId !== null && (
+                <PropertyForm propertyId={editingPropertyId} onClose={closeForm} />
+            )}
+        </div>
+    );
+};
+
+export default PropertyPage;
 import React, { useEffect, useState } from 'react';
 import { getProperties } from '../api'; // Define this API function
 
