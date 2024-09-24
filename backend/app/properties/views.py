@@ -1,3 +1,17 @@
+from rest_framework import generics
+from .models import Property
+from .serializers import PropertySerializer
+from rest_framework.permissions import IsAuthenticated
+
+class PropertyCreateView(generics.CreateAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        # Assign the property to the current user's business profile
+        business_profile = self.request.user.businessprofile
+        serializer.save(business_profile=business_profile)
 from rest_framework import viewsets
 from .models import Property
 from .serializers import PropertySerializer
