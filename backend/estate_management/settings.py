@@ -1,4 +1,14 @@
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',  # Add REST framework
+    'billing',         # Add billing app
+]
+INSTALLED_APPS = [
     ...
     'rest_framework',
 ]
