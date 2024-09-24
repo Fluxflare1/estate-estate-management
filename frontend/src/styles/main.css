@@ -1,1 +1,68 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
+/* Header and Footer */
+header, footer {
+    background-color: #001f3f; /* Navy Blue */
+    color: #FFD700; /* Gold */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    background-color: #001f3f; /* Navy Blue */
+    color: #FFD700; /* Gold */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #FFD700; /* Light Gold */
+    color: #001f3f; /* Navy Blue */
+}
+
+/* Forms */
+input, textarea {
+    border: 2px solid #001f3f; /* Navy Blue */
+    padding: 10px;
+    margin: 10px 0;
+}
+
+input:focus, textarea:focus {
+    border-color: #FFD700; /* Gold */
+}
+
+/* Cards */
+.card {
+    border: 1px solid #FFD700; /* Gold */
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Splash Screen */
+.splash-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #001f3f; /* Navy Blue */
+    color: #FFD700; /* Gold */
+    font-size: 2rem;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
