@@ -1,3 +1,17 @@
+# backend/energy-billings/energy_consumption/models.py
+from django.contrib.auth.models import User
+from django.db import models
+
+class EnergyBillingAccount(models.Model):
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE)
+    biller = models.OneToOneField(User, related_name='biller_account', on_delete=models.CASCADE)
+    # Additional fields for account information
+    energy_purchased = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    current_reading = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    previous_reading = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.landlord}'s Billing Account"
 from django.db import models
 
 class EnergyBillingAccount(models.Model):
