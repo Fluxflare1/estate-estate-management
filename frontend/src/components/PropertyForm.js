@@ -1,3 +1,102 @@
+import React, { useState, useEffect } from 'react';
+import { createProperty, updateProperty, getProperty } from '../api/propertyApi';
+
+const PropertyForm = ({ propertyId, onClose }) => {
+    const [property, setProperty] = useState({
+        name: '',
+        location: '',
+        landlord: '',
+        tenant: '',
+        rent: ''
+    });
+
+    useEffect(() => {
+        if (propertyId) {
+            const fetchProperty = async () => {
+                const response = await getProperty(propertyId);
+                setProperty(response.data);
+            };
+            fetchProperty();
+        }
+    }, [propertyId]);
+
+    const handleChange = (e) => {
+        setProperty({ ...property, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (propertyId) {
+            await updateProperty(propertyId, property);
+        } else {
+            await createProperty(property);
+        }
+        onClose(); // Close the form modal after submission
+    };
+
+    return (
+        <div>
+            <h2>{propertyId ? 'Edit Property' : 'Add Property'}</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Property Name:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={property.name}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Location:</label>
+                    <input
+                        type="text"
+                        name="location"
+                        value={property.location}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Landlord:</label>
+                    <input
+                        type="text"
+                        name="landlord"
+                        value={property.landlord}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Tenant:</label>
+                    <input
+                        type="text"
+                        name="tenant"
+                        value={property.tenant}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Rent Amount:</label>
+                    <input
+                        type="number"
+                        name="rent"
+                        value={property.rent}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <button type="submit">
+                    {propertyId ? 'Update Property' : 'Add Property'}
+                </button>
+                <button type="button" onClick={onClose}>Cancel</button>
+            </form>
+        </div>
+    );
+};
+
+export default PropertyForm;
 import React, { useState } from 'react';
 import { createProperty } from '../api'; // Define this API function
 
