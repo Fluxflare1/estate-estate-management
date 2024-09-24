@@ -1,3 +1,17 @@
+from django.contrib.auth.models import User, Group
+
+# Function to create and assign groups (roles)
+def create_user_roles():
+    # Create roles
+    business_admin_group, created = Group.objects.get_or_create(name='BusinessAdmin')
+    co_admin_group, created = Group.objects.get_or_create(name='CoAdmin')
+    agent_group, created = Group.objects.get_or_create(name='Agent')
+
+    # You can also add permissions specific to each role if needed
+    # Example: Add 'change_property' permission to BusinessAdmin
+    # from django.contrib.auth.models import Permission
+    # change_property_permission = Permission.objects.get(codename='change_property')
+    # business_admin_group.permissions.add(change_property_permission)
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
