@@ -1,0 +1,88 @@
+/* Color Palette */
+:root {
+    --color-navy: #001F3F; /* Navy */
+    --color-gold: #FFD700; /* Gold */
+    --color-background: #FAFAFA; /* Background */
+    --color-text: #444444; /* Main Text */
+}
+
+/* General Styles */
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Footer */
+header, footer {
+    background-color: var(--color-navy);
+    color: var(--color-gold);
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1, footer h1 {
+    margin: 0;
+}
+
+/* Links */
+a {
+    color: var(--color-gold);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.button {
+    background-color: var(--color-navy);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+}
+
+/* Forms */
+input, select, textarea {
+    border: 1px solid var(--color-navy);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--color-navy);
+}
+
+/* Alerts and Notifications */
+.alert {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+/* Splash Screen */
+.splash-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--color-navy);
+    color: var(--color-gold);
+    font-size: 2rem;
+}
