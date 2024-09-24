@@ -1,4 +1,15 @@
 .splash-screen {
+    background-color: #003366; /* Navy */
+    color: #FFD700; /* Gold */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    h1 {
+        font-size: 2rem;
+    }
+}
+.splash-screen {
     display: flex;
     justify-content: center;
     align-items: center;
