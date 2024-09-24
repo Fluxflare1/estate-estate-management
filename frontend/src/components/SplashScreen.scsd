@@ -1,0 +1,10 @@
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #001f3f; // Your deep blue color
+    color: #FFD700; // Gold color for text
+    text-align: center;
+}
