@@ -1,4 +1,103 @@
-// frontend/src/components/UserProfile.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const UserProfile = () => {
+    const [profile, setProfile] = useState({
+        username: '',
+        email: '',
+        phone_number: '',
+        address: '',
+        profile_image: ''
+    });
+
+    const [file, setFile] = useState(null);
+
+    useEffect(() => {
+        // Fetch user profile data
+        const fetchProfile = async () => {
+            const response = await axios.get('/api/profile/');
+            setProfile(response.data);
+        };
+        fetchProfile();
+    }, []);
+
+    const handleChange = (e) => {
+        setProfile({
+            ...profile,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('username', profile.username);
+        formData.append('email', profile.email);
+        formData.append('phone_number', profile.phone_number);
+        formData.append('address', profile.address);
+        if (file) {
+            formData.append('profile_image', file);
+        }
+
+        try {
+            await axios.put('/api/profile/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            alert('Profile updated successfully');
+        } catch (error) {
+            console.error('Error updating profile:', error);
+        }
+    };
+
+    return (
+        <div>
+            <h2>Edit Profile</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="username"
+                    value={profile.username}
+                    onChange={handleChange}
+                    placeholder="Username"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    value={profile.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                />
+                <input
+                    type="text"
+                    name="phone_number"
+                    value={profile.phone_number}
+                    onChange={handleChange}
+                    placeholder="Phone Number"
+                />
+                <textarea
+                    name="address"
+                    value={profile.address}
+                    onChange={handleChange}
+                    placeholder="Address"
+                />
+                <input
+                    type="file"
+                    name="profile_image"
+                    onChange={handleFileChange}
+                />
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+    );
+};
+
+export default UserProfile;
 import React, { useEffect, useState } from 'react';
 import { getUserProfile, updateUserProfile } from '../api/userApi';
 
