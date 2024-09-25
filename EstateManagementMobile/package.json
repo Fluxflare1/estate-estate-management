@@ -1,1 +1,17 @@
-
+{
+  "name": "EstateManagementMobile",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "17.0.1",
+    "react-native": "0.64.2",
+    "react-navigation": "^5.13.0",
+    "react-native-splash-screen": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios"
+  }
+}
