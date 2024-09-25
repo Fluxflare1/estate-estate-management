@@ -1,3 +1,23 @@
+import React, { useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const App = () => {
+    useEffect(() => {
+        SplashScreen.hide();  // Hides the splash screen after loading
+    }, []);
+
+    return (
+        <NavigationContainer>
+            {/* Define your screens here */}
+        </NavigationContainer>
+    );
+};
+
+export default App;
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
