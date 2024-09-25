@@ -1,3 +1,4 @@
+import UtilityBillManager from './components/UtilityBillManager'; // Adjust the path as necessary
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
