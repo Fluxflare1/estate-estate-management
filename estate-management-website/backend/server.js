@@ -1,4 +1,37 @@
 const express = require('express');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+
+const app = express();
+const port = 3000;
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// MySQL Connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'your_username',
+    password: 'your_password',
+    database: 'estate_management'
+});
+
+db.connect(err => {
+    if (err) {
+        console.error('Database connection failed:', err);
+    } else {
+        console.log('Connected to MySQL database');
+    }
+});
+
+// Your existing routes and Nodemailer configuration here
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
+const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
