@@ -1,3 +1,4 @@
+"axios": "^0.21.1"
 {
   "name": "EstateManagementMobile",
   "version": "1.0.0",
