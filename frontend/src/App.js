@@ -1,4 +1,21 @@
 // src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+
+function App() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" exact component={LandingPage} />
+                {/* Add more routes here for other components */}
+            </Switch>
+        </Router>
+    );
+}
+
+export default App;
+// src/App.js
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
