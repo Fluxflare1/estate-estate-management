@@ -1,3 +1,39 @@
+app.post('/send', (req, res) => {
+    const { name, email, message } = req.body;
+
+    // Insert into the database
+    const query = 'INSERT INTO inquiries (name, email, message) VALUES (?, ?, ?)';
+    db.query(query, [name, email, message], (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return res.status(500).send('Error saving inquiry');
+        }
+
+        // Sending the email
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'your_email@gmail.com',
+                pass: 'your_email_password'
+            }
+        });
+
+        const mailOptions = {
+            from: email,
+            to: 'your_email@gmail.com',
+            subject: 'New Inquiry from Contact Form',
+            text: message
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                return res.status(500).send('Error sending email');
+            }
+            res.send('Inquiry sent successfully!');
+        });
+    });
+});
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
